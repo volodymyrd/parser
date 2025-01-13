@@ -25,10 +25,10 @@ use crate::internal::Parser;
 pub fn map_res<I: Clone, O, E: ParseError<I> + FromExternalError<I, E2>, E2, F, G>(
     parser: F,
     f: G,
-) -> impl Parser<I, Output=O, Error=E>
-    where
-        F: Parser<I, Error=E>,
-        G: FnMut(<F as Parser<I>>::Output) -> Result<O, E2>,
+) -> impl Parser<I, Output = O, Error = E>
+where
+    F: Parser<I, Error = E>,
+    G: FnMut(<F as Parser<I>>::Output) -> Result<O, E2>,
 {
     parser.map_res(f)
 }

@@ -86,7 +86,7 @@ fn lowercase_byte(c: u8) -> u8 {
     }
 }
 
-impl<'a, 'b> Compare<&'b [u8]> for &'a [u8] {
+impl<'b> Compare<&'b [u8]> for &[u8] {
     #[inline(always)]
     fn compare(&self, t: &'b [u8]) -> CompareResult {
         let pos = self.iter().zip(t.iter()).position(|(a, b)| a != b);
@@ -119,7 +119,7 @@ impl<'a, 'b> Compare<&'b [u8]> for &'a [u8] {
     }
 }
 
-impl<'a, 'b> Compare<&'b str> for &'a str {
+impl<'b> Compare<&'b str> for &str {
     #[inline(always)]
     fn compare(&self, t: &'b str) -> CompareResult {
         self.as_bytes().compare(t.as_bytes())
